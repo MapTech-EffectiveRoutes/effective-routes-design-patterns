@@ -2,50 +2,21 @@ import {Prototype} from "./prototype";
 import {CircularReference} from "./circular-reference";
 import { User } from "./user";
 import { UserId } from "./user-id";
-import { UserPreference } from './user-preference';
+import { UserType } from './user-type';
+import { UserNumber } from "./user-number";
+import { UserDni } from "./user-dni";
 
-function clientCode1() {
-    
-    const original: Prototype = new Prototype();
-    original.primitive = 245;
-    original.component = new Date();
-    original.circularReference = new CircularReference(original);
-    
-    //const copy: Prototype = original.shallowCopy();
-    
-    const copy: Prototype = original.deepCopy();
-    
-    if (original === copy) {
-        console.log('Same object reference.');
-    } else {
-        console.log('Different object reference.');
-    }
-    if (original.component === copy.component) {
-        console.log('Simple component has NOT been cloned.');
-    } else {
-        console.log('Simple component has been cloned, different object reference.');
-    }
-    if (original.circularReference === copy.circularReference) {
-        console.log('Component with back reference has NOT been cloned.');
-    } else {
-        console.log('Component with back reference has been cloned, different object reference.');
-    }
-    if (original.circularReference.prototype === copy.circularReference.prototype) {
-        console.log('Component with back reference is linked to original object.');
-    } else {
-        console.log('Component with back reference is linked to the clone, different object reference.');
-    }
-}
 
-function clientCode2() {
+function clientCode() {
     const userOriginalPrototype: User = new User();
     
     userOriginalPrototype.id = new UserId(1);
+    userOriginalPrototype.type = new UserType(userOriginalPrototype);
+    userOriginalPrototype.number = new UserNumber(924476178);
+    userOriginalPrototype.dni = new UserDni(7834126);
     userOriginalPrototype.email = 'test@upc.edu.pe';
-    userOriginalPrototype.preference = 
-        new UserPreference(userOriginalPrototype);
-    
-    //const userCopy: User = userOriginalPrototype.shallowCopy();
+    userOriginalPrototype.name = "Alejandro Magno";
+    userOriginalPrototype.password = "soyElMejor123";
     
     const userCopy: User = userOriginalPrototype.deepCopy();
     
@@ -59,16 +30,22 @@ function clientCode2() {
     else
         console.log('Different memory address, the ID has been cloned');
     
-    if (userOriginalPrototype.preference === userCopy.preference)
+    if (userOriginalPrototype.type === userCopy.type)
         console.log('Same memory address, the preference has not been cloned');
     else
         console.log('Different memory address, the preference has been cloned');
     
-    if (userOriginalPrototype.preference.user === userCopy.preference.user)
-        console.log('Same memory address, the user preference has not been cloned');
+    if (userOriginalPrototype.type.user === userCopy.type.user)
+        console.log('Same memory address, the user type has not been cloned');
     else
-        console.log('Different memory address, the user preference has been cloned');
+        console.log('Different memory address, the user type has been cloned');
+    
+    if (userOriginalPrototype.number === userCopy.number)
+        console.log('Same memory address, the user number has not been cloned');
+    else
+        console.log('Different memory address, the user number has been cloned');
+        
 }
 
-//clientCode1();
-clientCode2();
+
+clientCode();

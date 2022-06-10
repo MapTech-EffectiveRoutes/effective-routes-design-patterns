@@ -1,10 +1,17 @@
+import { UserDni } from "./user-dni";
 import { UserId } from "./user-id";
-import { UserPreference } from "./user-preference";
+import { UserNumber } from "./user-number";
+import { UserType } from "./user-type";
 
 export class User {
-    public id: UserId; // Object Reference
-    public email: string; // Primitive
-    public preference: UserPreference; // Object Reference
+    public id: UserId;
+    public type: UserType;
+    public number: UserNumber;
+    public dni: UserDni;
+    public email: string;
+    public name: string;
+    public password: string;
+   
 
     public shallowCopy(): this {
         const clone = Object.create(this);
@@ -14,8 +21,11 @@ export class User {
     public deepCopy(): this {
         const clone = Object.create(this);
         clone.id = Object.create(this.id);
-        clone.preference = Object.create(this.preference);
-        clone.preference.user = Object.create(this.preference.user);
+        clone.type = Object.create(this.type);
+        clone.type.user = Object.create(this.type.user);
+        clone.number = Object.create(this.number);
+        clone.dni = Object.create(this.dni);
+        clone.number = Object.create(this.number);
 
         /*clone.preference = {
             ...this.preference,

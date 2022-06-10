@@ -1,6 +1,6 @@
 import { User } from "./user";
 
-export class UserPreference {
+export class UserType {
   public user: User; // Object Reference
 
   constructor(user: User) {
