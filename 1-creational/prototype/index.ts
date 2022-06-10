@@ -44,7 +44,9 @@ function clientCode() {
         console.log('Same memory address, the user number has not been cloned');
     else
         console.log('Different memory address, the user number has been cloned');
-        
+    
+
+    console.log(userOriginalPrototype.id + userOriginalPrototype.name);
 }
 
 
