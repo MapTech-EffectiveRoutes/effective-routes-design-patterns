@@ -1,30 +1,20 @@
 import {ConcreteSubject} from "./concrete/concrete-subject";
-import {ConcreteObserverB} from "./concrete/concrete-observer-b";
-import {ConcreteObserverA} from "./concrete/concrete-observer-a";
-import {Subject} from "./abstract/subject";
-import {Observer} from "./abstract/observer";
-import {ConcreteObserverC} from "./concrete/concrete-observer-c";
 
-export class Client {
+import {Subject} from "./abstract/subject";
+import {User} from "./abstract/client";
+import {ConcreteObserverClient} from "./concrete/concrete-observer-user";
+
+export class Notification {
     public execute(): void {
         const subject: ConcreteSubject = new ConcreteSubject();
 
-        const observerA: Observer = new ConcreteObserverA();
-        const observerB: Observer = new ConcreteObserverB();
-        const observerC: Observer = new ConcreteObserverC();
+        const observer: User = new ConcreteObserverClient();
+        
+        subject.attach(observer);
+        subject.packageOnTransit();
 
-        subject.attach(observerA);
-        subject.attach(observerB);
-        subject.attach(observerC);
-
-        subject.someBusinessLogic();
-
-        subject.detach(observerA);
-        subject.detach(observerB);
-        subject.detach(observerC);
-        subject.someBusinessLogic();
     }
 }
 
-const client: Client = new Client();
+const client: Notification = new Notification();
 client.execute();

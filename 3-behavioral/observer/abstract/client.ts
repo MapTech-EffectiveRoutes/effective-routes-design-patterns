@@ -1,5 +1,5 @@
 import {Subject} from "./subject";
 
-export interface Observer {
+export interface User {
     update(subject: Subject): void;
 }

@@ -1,39 +1,39 @@
 import {Subject} from "../abstract/subject";
-import {Observer} from "../abstract/observer";
+import {User} from "../abstract/client";
 
 export class ConcreteSubject implements Subject {
     public state: number;
-    private observers: Observer[] = [];
+    private observers: User[] = [];
 
-    public attach(observer: Observer): void {
+    public attach(observer: User): void {
         const isExist = this.observers.indexOf(observer) !== -1;
         if (isExist) {
-            return console.log('Subject: Observer has been attached already.');
+            return console.log('Message: Client has been attached already.');
         }
-        console.log('Subject: Attached an observer.');
+        console.log('Subject: Attached a Client.');
         this.observers.push(observer);
     }
 
-    public detach(observer: Observer): void {
+    public detach(observer: User): void {
         const observerIndex = this.observers.indexOf(observer);
         if (observerIndex === -1) {
-            return console.log('Subject: Nonexistent observer.');
+            return console.log('Subject: Nonexistent Client.');
         }
         this.observers.splice(observerIndex, 1);
-        console.log('Subject: Detached an observer.');
+        console.log('Subject: Detached a Client.');
     }
 
     public notify(): void {
-        console.log('Subject: Notifying (' + this.observers.length + ') observers...');
+        console.log('Subject: Notifying (' + this.observers.length + ') Clients...');
         for (const observer of this.observers) {
             observer.update(this);
         }
     }
 
-    public someBusinessLogic(): void {
-        console.log('\nSubject: I\'m doing something important.');
-        this.state = Math.floor(Math.random() * (10 + 1));
-        console.log(`Subject: My state has just changed to: ${this.state}`);
+    public packageOnTransit(): void {
+        console.log('\nNotification: Your package is on its way.');
+        this.state = 1;
+        console.log(`Subject: Package status(0: still processing, 1: On transit): ${this.state}`);
         this.notify();
     }
 }

@@ -1,7 +1,7 @@
-import {Observer} from "./observer";
+import {User} from "./client";
 
 export interface Subject {
-    attach(observer: Observer): void;
-    detach(observer: Observer): void;
+    attach(observer: User): void;
+    detach(observer: User): void;
     notify(): void;
 }
