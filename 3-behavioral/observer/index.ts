@@ -1,12 +1,12 @@
-import {ConcreteSubject} from "./concrete/concrete-subject";
+import {ConcreteMessage} from "./concrete/concrete-message";
 
-import {Subject} from "./abstract/subject";
+import {Message} from "./abstract/message";
 import {User} from "./abstract/client";
 import {ConcreteObserverClient} from "./concrete/concrete-observer-user";
 
 export class Notification {
     public execute(): void {
-        const subject: ConcreteSubject = new ConcreteSubject();
+        const subject: ConcreteMessage = new ConcreteMessage();
 
         const observer: User = new ConcreteObserverClient();
         

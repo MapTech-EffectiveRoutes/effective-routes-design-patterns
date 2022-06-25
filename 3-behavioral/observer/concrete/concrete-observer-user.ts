@@ -1,9 +1,9 @@
 import {User} from "../abstract/client";
-import {Subject} from "../abstract/subject";
-import {ConcreteSubject} from "./concrete-subject";
+import {Message} from "../abstract/message";
+import {ConcreteMessage} from "./concrete-message";
 
 export class ConcreteObserverClient implements User {
-    public update(subject: Subject): void {
+    public update(subject: Message): void {
         console.log('Client: Notification recieved.');
     }
 }
