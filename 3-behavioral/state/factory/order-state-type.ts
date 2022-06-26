@@ -1,0 +1,5 @@
+export enum OrderStateType {
+    TRAVELING = 'TRAVELING',
+    DELIVERED = 'DELIVERED',
+    UNDELIVERED ='UNDELIVERED'
+}
